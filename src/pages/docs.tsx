@@ -1,8 +1,20 @@
+import React from 'react';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import { Editor } from '@toast-ui/react-editor';
+
+
 const DocsPage = () => {
+
   return (
-    <div>
-      <p>This is umi docs.</p>
-    </div>
+      <>
+          <Editor
+              previewStyle="vertical"
+              height="400px"
+              initialEditType="markdown"
+              initialValue="hello"
+
+          />
+      </>
   );
 };
 
