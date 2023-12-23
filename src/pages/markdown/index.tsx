@@ -72,7 +72,19 @@ func (r commentService) GetCommentList(ctx context.Context, page, size int64) (c
     return r.commentDao.GetCommentList(ctx, page, size)
 }
 \`\`\`
+$$chart
+,category1,category2
+Jan,21,23
+Feb,31,17
 
+type: column
+title: Monthly Revenue
+x.title: Month
+y.title: Amount
+y.min: 1
+y.max: 40
+y.suffix: $
+$$
 `;
 
 export default function App() {
@@ -92,11 +104,10 @@ export default function App() {
                 ref={editor_ref}
                 initialValue={initData}
                 plugins={[
-                    tableMergedCellPlugin,
+                    [codeSyntaxHighlightPlugin, { highlighter: Prism }],
                     umlPlugin,
-                    chartPlugin,
-                    codeSyntaxHighlightPlugin,
-                    colorPlugin
+                    [chartPlugin, chartOptions],
+                    tableMergedCellPlugin,
                 ]}
             />
             <Editor
