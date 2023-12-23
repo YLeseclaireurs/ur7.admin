@@ -1,5 +1,4 @@
-import yayJpg from '../assets/yay.jpg';
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { Col, Row } from 'antd';
 import styles from "@/pages/content/index.less";
 
