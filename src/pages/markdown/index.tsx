@@ -73,7 +73,6 @@ func (r commentService) GetCommentList(ctx context.Context, page, size int64) (c
 }
 \`\`\`
 
-
 `;
 
 export default function App() {
@@ -89,7 +88,17 @@ export default function App() {
 
     return (
         <div className="App" >
-            <Viewer initialValue={content} />
+            <Viewer
+                ref={editor_ref}
+                initialValue={initData}
+                plugins={[
+                    tableMergedCellPlugin,
+                    umlPlugin,
+                    chartPlugin,
+                    codeSyntaxHighlightPlugin,
+                    colorPlugin
+                ]}
+            />
             <Editor
                 ref={editor_ref}
                 initialValue={initData}
@@ -113,13 +122,13 @@ export default function App() {
                 onChange={handleChange}
                 usageStatistics={false}
                 placeholder="写下你的想法.."
-                hooks={{
+                /*hooks={{
                     addImageBlobHook: (fileOrBlob: Blob | File, callback: (url: string, text?: string) => void) => {
                         const param = new FormData();
                         param.append('file', fileOrBlob);
                         console.log(fileOrBlob, param)
 
-                        /*
+                        /!*
                         request({
                             url: '/uploads',
                             headers: { 'Content-Type': 'multipart/form-data' },
@@ -134,10 +143,10 @@ export default function App() {
                         .catch((err) => {
                             console.log(err);
                         });
-                        */
+                        *!/
 
                     },
-                }}
+                }}*/
             />
             <Button className={"mt10"} onClick={() => {
                     const editor_instance = editor_ref.current?.getInstance();
