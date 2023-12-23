@@ -74,6 +74,27 @@ export default function App() {
                 ]}
                 onChange={handleChange}
                 usageStatistics={false}
+                hooks={{
+                    addImageBlobHook: (fileOrBlob: Blob | File, callback: (url: string, text?: string) => void) => {
+                        const param = new FormData();
+                        param.append('file', fileOrBlob);
+                        console.log(fileOrBlob, param)
+                        /*request({
+                            url: '/uploads',
+                            headers: { 'Content-Type': 'multipart/form-data' },
+                            method: 'POST',
+                            data: param,
+                        })
+                        .then((res) => {
+                            const { data } = res as any;
+                            const { url, name } = data || {};
+                            callback(url, name);
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });*/
+                    },
+                }}
             />
             <Button onClick={() => {
                     const editor_instance = editor_ref.current?.getInstance();
