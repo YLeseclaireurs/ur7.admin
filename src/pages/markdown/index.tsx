@@ -17,6 +17,9 @@ import '@toast-ui/editor-plugin-table-merged-cell/dist/toastui-editor-plugin-tab
 import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 
+import { Col, Row } from 'antd';
+
+import styles from "@/pages/markdown/index.less";
 
 const colorSyntaxOptions = {
     preset: ['#181818', '#292929', '#393939']
@@ -129,8 +132,10 @@ export default function App() {
     }
 
     return (
+        <Row className={styles.center}>
+            <Col className={styles.pad} xs={24} sm={24} md={24} lg={24} xl={{ span: 10, offset: 7}} xxl={{ span: 12, offset: 6}}>
         <div className="App" >
-            <Viewer
+            {/*<Viewer
                 ref={editor_ref}
                 initialValue={initData}
                 plugins={[
@@ -139,13 +144,13 @@ export default function App() {
                     [chartPlugin, chartOptions],
                     tableMergedCellPlugin,
                 ]}
-            />
+            />*/}
             <Editor
                 ref={editor_ref}
                 initialValue={initData}
                 initialEditType="markdown"
                 previewStyle="vertical"
-                height={"800px"}
+                height={"1300px"}
                 plugins={[
                     [codeSyntaxHighlightPlugin, { highlighter: Prism }],
                     [chartPlugin, chartOptions],
@@ -163,7 +168,8 @@ export default function App() {
                 onChange={handleChange}
                 usageStatistics={false}
                 placeholder="写下你的想法.."
-                /*hooks={{
+                /*
+                hooks={{
                     addImageBlobHook: (fileOrBlob: Blob | File, callback: (url: string, text?: string) => void) => {
                         const param = new FormData();
                         param.append('file', fileOrBlob);
@@ -187,7 +193,8 @@ export default function App() {
                         *!/
 
                     },
-                }}*/
+                }}
+                */
             />
             <Button className={"mt10"} onClick={() => {
                     const editor_instance = editor_ref.current?.getInstance();
@@ -196,5 +203,7 @@ export default function App() {
                 内容发布
             </Button>
         </div>
+            </Col>
+        </Row>
     );
 }
