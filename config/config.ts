@@ -6,4 +6,5 @@ export default defineConfig({
     routes: routes,
     npmClient: 'npm',
     proxy: proxy['dev'],
+    base: '/admin/',
 });
